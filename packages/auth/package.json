@@ -1,15 +1,21 @@
 {
   "name": "@tinywins/auth",
   "type": "module",
+  "main": "./dist/index.js",
   "exports": {
     ".": {
-      "default": "./src/index.ts"
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
     },
     "./*": {
-      "default": "./src/*.ts"
+      "types": "./src/*.ts",
+      "default": "./dist/*.js"
     }
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check-types": "tsc --noEmit --incremental false -p tsconfig.json"
+  },
   "dependencies": {
     "@better-auth/expo": "catalog:",
     "@tinywins/db": "workspace:*",

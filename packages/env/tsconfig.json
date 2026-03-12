@@ -1,3 +1,14 @@
 {
-  "extends": "@tinywins/config/tsconfig.base.json"
+  "extends": "@tinywins/config/tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "composite": true
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
 }

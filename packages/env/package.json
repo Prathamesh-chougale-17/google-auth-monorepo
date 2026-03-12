@@ -4,9 +4,22 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./server": "./src/server.ts",
-    "./web": "./src/web.ts",
-    "./native": "./src/native.ts"
+    "./server": {
+      "types": "./src/server.ts",
+      "default": "./dist/server.js"
+    },
+    "./web": {
+      "types": "./src/web.ts",
+      "default": "./dist/web.js"
+    },
+    "./native": {
+      "types": "./src/native.ts",
+      "default": "./dist/native.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check-types": "tsc --noEmit --incremental false -p tsconfig.json"
   },
   "dependencies": {
     "@t3-oss/env-core": "^0.13.1",
