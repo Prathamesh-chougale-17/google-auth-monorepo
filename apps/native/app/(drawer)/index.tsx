@@ -4,22 +4,23 @@ import { Card, Chip, useThemeColor } from "heroui-native";
 import { Text, View, Pressable } from "react-native";
 
 import { Container } from "@/components/container";
-import { SignIn } from "@/components/sign-in";
-import { SignUp } from "@/components/sign-up";
+import { GoogleSignIn } from "@/components/google-sign-in";
 import { authClient } from "@/lib/auth-client";
 import { queryClient, orpc } from "@/utils/orpc";
 
 export default function Home() {
+  const { data: session } = authClient.useSession();
   const healthCheck = useQuery(orpc.healthCheck.queryOptions());
-  const privateData = useQuery(orpc.privateData.queryOptions());
+  const privateData = useQuery({
+    ...orpc.privateData.queryOptions(),
+    enabled: Boolean(session?.user),
+  });
   const isConnected = healthCheck?.data === "OK";
   const isLoading = healthCheck?.isLoading;
-  const { data: session } = authClient.useSession();
 
   const mutedColor = useThemeColor("muted");
   const successColor = useThemeColor("success");
   const dangerColor = useThemeColor("danger");
-  const foregroundColor = useThemeColor("foreground");
 
   return (
     <Container className="p-6">
@@ -79,16 +80,17 @@ export default function Home() {
         </Card>
       </Card>
 
-      <Card variant="secondary" className="mt-6 p-4">
-        <Card.Title className="mb-3">Private Data</Card.Title>
-        {privateData && <Card.Description>{privateData.data?.message}</Card.Description>}
-      </Card>
-
-      {!session?.user && (
-        <>
-          <SignIn />
-          <SignUp />
-        </>
+      {session?.user ? (
+        <Card variant="secondary" className="mt-6 p-4">
+          <Card.Title className="mb-3">Private Data</Card.Title>
+          <Card.Description>
+            {privateData.isLoading
+              ? "Loading private data..."
+              : privateData.data?.message || "Private data is unavailable right now."}
+          </Card.Description>
+        </Card>
+      ) : (
+        <GoogleSignIn />
       )}
     </Container>
   );
