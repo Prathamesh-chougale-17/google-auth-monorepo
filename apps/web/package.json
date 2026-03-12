@@ -1,0 +1,52 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "serve": "vite preview",
+    "start": "vite",
+    "check-types": "tsc --noEmit",
+    "generate-pwa-assets": "pwa-assets-generator"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
+    "@orpc/client": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/tanstack-query": "catalog:",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-form": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-router": "^1.141.1",
+    "@tinywins/api": "workspace:*",
+    "@tinywins/auth": "workspace:*",
+    "@tinywins/env": "workspace:*",
+    "@tinywins/ui": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "lucide-react": "catalog:",
+    "next-themes": "catalog:",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sonner": "catalog:",
+    "vite-plugin-pwa": "^1.0.1",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.91.1",
+    "@tanstack/react-router-devtools": "^1.141.1",
+    "@tanstack/router-plugin": "^1.141.1",
+    "@tinywins/config": "workspace:*",
+    "@types/node": "^22.13.14",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "catalog:",
+    "@vite-pwa/assets-generator": "^1.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "postcss": "^8.5.3",
+    "tailwindcss": "catalog:",
+    "typescript": "^5",
+    "vite": "^6.2.2"
+  }
+}

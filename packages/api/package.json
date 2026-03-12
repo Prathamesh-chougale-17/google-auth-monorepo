@@ -1,0 +1,29 @@
+{
+  "name": "@tinywins/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@orpc/client": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/zod": "catalog:",
+    "@tinywins/auth": "workspace:*",
+    "@tinywins/db": "workspace:*",
+    "@tinywins/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@tinywins/config": "workspace:*",
+    "hono": "catalog:",
+    "typescript": "^5"
+  }
+}
