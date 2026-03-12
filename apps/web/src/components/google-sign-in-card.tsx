@@ -22,10 +22,12 @@ export default function GoogleSignInCard() {
 
     setIsSubmitting(true);
 
+    const callbackURL = new URL("/dashboard", window.location.origin).toString();
+
     await authClient.signIn.social(
       {
         provider: "google",
-        callbackURL: "/dashboard",
+        callbackURL,
       },
       {
         onError: (context) => {
