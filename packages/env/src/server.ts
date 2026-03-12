@@ -2,6 +2,12 @@ import "dotenv/config";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
+const runtimeEnv = (
+  globalThis as typeof globalThis & {
+    process?: { env: Record<string, string | undefined> };
+  }
+).process?.env ?? {};
+
 export const env = createEnv({
   server: {
     DATABASE_URL: z.string().min(1),
@@ -12,6 +18,6 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   },
-  runtimeEnv: process.env,
+  runtimeEnv,
   emptyStringAsUndefined: true,
 });
