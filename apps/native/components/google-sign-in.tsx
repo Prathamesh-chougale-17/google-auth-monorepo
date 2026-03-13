@@ -1,5 +1,6 @@
+import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { Button, Spinner, Surface, useToast } from "heroui-native";
+import { Button, Card, Spinner, useThemeColor, useToast } from "heroui-native";
 import { useState } from "react";
 import { Text, View } from "react-native";
 
@@ -9,6 +10,7 @@ import { queryClient } from "@/utils/orpc";
 export function GoogleSignIn() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const accentForegroundColor = useThemeColor("accent-foreground");
 
   async function handleGoogleSignIn() {
     if (isSubmitting) {
@@ -53,12 +55,18 @@ export function GoogleSignIn() {
   }
 
   return (
-    <Surface variant="secondary" className="p-4 rounded-lg">
-      <View className="gap-2 mb-4">
-        <Text className="text-foreground font-medium">Sign in with Google</Text>
-        <Text className="text-muted text-sm">
-          Google is the only sign-in method enabled for this app.
-        </Text>
+    <Card variant="secondary" className="p-5">
+      <View className="flex-row items-start gap-3 mb-5">
+        <View className="h-11 w-11 rounded-2xl bg-accent items-center justify-center">
+          <Ionicons name="logo-google" size={20} color={accentForegroundColor} />
+        </View>
+
+        <View className="flex-1 gap-1">
+          <Text className="text-foreground text-base font-semibold">Continue with Google</Text>
+          <Text className="text-muted text-sm leading-5">
+            Sign in to unlock private data, session-aware API requests, and future account features.
+          </Text>
+        </View>
       </View>
 
       <Button onPress={handleGoogleSignIn} isDisabled={isSubmitting}>
@@ -68,6 +76,6 @@ export function GoogleSignIn() {
           <Button.Label>Continue with Google</Button.Label>
         )}
       </Button>
-    </Surface>
+    </Card>
   );
 }
