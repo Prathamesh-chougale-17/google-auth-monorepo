@@ -8,10 +8,20 @@
     },
     "name": "tinywins",
     "slug": "tinywins",
-    "plugins": ["expo-font"],
+    "plugins": [
+      "expo-font"
+    ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ac56852b-7292-4ece-8b73-81bd83e6d906"
+      }
+    },
+    "android": {
+      "package": "com.andychauhan81.tinywins"
     }
   }
 }
